@@ -12,8 +12,8 @@ import UIKit
 class ZoomBubbleView: UIView {
     
     private let imageView = UIImageView()
-    private let crossView = UIView() // La vue pour la croix
-    private let gridLayer = CAShapeLayer() // La couche pour le cadrillage
+    private let crossView = UIView()
+    private let gridLayer = CAShapeLayer()
     
     init(frame: CGRect, image: UIImage?) {
         super.init(frame: frame)
@@ -22,18 +22,15 @@ class ZoomBubbleView: UIView {
         layer.cornerRadius = frame.width / 2
         layer.masksToBounds = true
         
-        // Configurer l'image à l'intérieur de la bulle
         imageView.frame = bounds
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         
-        // Configurer la vue de la croix
-        let crossSize: CGFloat = 20 // Taille de la croix
+        let crossSize: CGFloat = 20
         crossView.frame = CGRect(x: (frame.width - crossSize) / 2, y: (frame.height - crossSize) / 2, width: crossSize, height: crossSize)
         crossView.backgroundColor = .clear
         addSubview(crossView)
         
-        // Dessiner la croix
         let lineWidth: CGFloat = 2
         let crossPath = UIBezierPath()
         crossPath.lineWidth = lineWidth
@@ -48,8 +45,7 @@ class ZoomBubbleView: UIView {
         crossLayer.lineWidth = lineWidth
         crossView.layer.addSublayer(crossLayer)
         
-        // Dessiner le cadrillage
-        let gridSize: CGFloat = 25 // Taille de chaque carré de la grille
+        let gridSize: CGFloat = 25
         let gridPath = UIBezierPath()
         gridPath.lineWidth = 1
         for x in stride(from: 0, to: frame.width, by: gridSize) {
@@ -72,19 +68,23 @@ class ZoomBubbleView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
     
-    func colorPicker(image: UIImage, label: UILabel, colorDisplayer: UIView) {
-        // Convertir le centre de crossView dans le système de coordonnées de la vue parente
+    
+    func colorPicker(image: UIImage, label: UILabel, colorDisplayer: UIView, hexColor: String?) {
         imageView.image = image
         let centerInSuperview = convert(crossView.center, to: imageView)
         
         let color = image.getPixelColorAtPoint(point: centerInSuperview, sourceView: imageView)
-        label.text = color.stringRepresentation
+        let luminance = color.luminance
+        
+        
+        label.textColor = luminance < 0.5 ? .white : .black
+        
+        let hexColor = image.getHexaValue(point: centerInSuperview, sourceView: imageView)
+        label.text = hexColor
         colorDisplayer.backgroundColor = color
     }
     
-    // Mettre à jour l'image à l'intérieur de la bulle de zoom
     func updateImage(image: UIImage?) {
         imageView.image = image
     }

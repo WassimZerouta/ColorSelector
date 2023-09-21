@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		573D36B22AB08C8800D24BE0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 573D36B12AB08C8800D24BE0 /* Lottie */; };
-		573D36B42AB08D0700D24BE0 /* uploadPictureLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 573D36B32AB08D0700D24BE0 /* uploadPictureLottie.json */; };
+		5742571F2AB83D0C001CC405 /* SavedColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5742571E2AB83D0C001CC405 /* SavedColorTableViewCell.swift */; };
+		574927172ABC3E500019780B /* colorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574927162ABC3E500019780B /* colorType.swift */; };
+		5749271F2ABC40470019780B /* ColorSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5749271E2ABC40470019780B /* ColorSelectorTests.swift */; };
 		57E9EB9F2AB1A84700326E1E /* ZoomBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9EB9E2AB1A84700326E1E /* ZoomBubbleView.swift */; };
 		57E9EBA22AB1A8CC00326E1E /* LivePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9EBA12AB1A8CC00326E1E /* LivePickerViewController.swift */; };
+		57E9EBA42AB306BF00326E1E /* BookmarksColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9EBA32AB306BE00326E1E /* BookmarksColorViewController.swift */; };
 		57FC1B862AAB42A5007AE0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1B852AAB42A5007AE0DA /* AppDelegate.swift */; };
 		57FC1B882AAB42A5007AE0DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1B872AAB42A5007AE0DA /* SceneDelegate.swift */; };
 		57FC1B8A2AAB42A5007AE0DA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1B892AAB42A5007AE0DA /* MainViewController.swift */; };
@@ -18,14 +20,27 @@
 		57FC1B8F2AAB42AA007AE0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FC1B8E2AAB42AA007AE0DA /* Assets.xcassets */; };
 		57FC1B922AAB42AA007AE0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FC1B902AAB42AA007AE0DA /* LaunchScreen.storyboard */; };
 		57FC1B9F2AAB4DE0007AE0DA /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1B9E2AAB4DE0007AE0DA /* UIImageExtension.swift */; };
-		57FC1BA32AAB65B9007AE0DA /* imageRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FC1BA22AAB65B9007AE0DA /* imageRouge.png */; };
 		57FC1BA52AAB66E7007AE0DA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1BA42AAB66E7007AE0DA /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		574927202ABC40470019780B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57FC1B7A2AAB42A5007AE0DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57FC1B812AAB42A5007AE0DA;
+			remoteInfo = ColorSelector;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		573D36B32AB08D0700D24BE0 /* uploadPictureLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploadPictureLottie.json; sourceTree = "<group>"; };
+		5742571E2AB83D0C001CC405 /* SavedColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedColorTableViewCell.swift; sourceTree = "<group>"; };
+		574927162ABC3E500019780B /* colorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorType.swift; sourceTree = "<group>"; };
+		5749271C2ABC40470019780B /* ColorSelectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorSelectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5749271E2ABC40470019780B /* ColorSelectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectorTests.swift; sourceTree = "<group>"; };
 		57E9EB9E2AB1A84700326E1E /* ZoomBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomBubbleView.swift; sourceTree = "<group>"; };
 		57E9EBA12AB1A8CC00326E1E /* LivePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePickerViewController.swift; sourceTree = "<group>"; };
+		57E9EBA32AB306BE00326E1E /* BookmarksColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksColorViewController.swift; sourceTree = "<group>"; };
 		57FC1B822AAB42A5007AE0DA /* ColorSelector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorSelector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FC1B852AAB42A5007AE0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57FC1B872AAB42A5007AE0DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,26 +50,40 @@
 		57FC1B912AAB42AA007AE0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57FC1B932AAB42AA007AE0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57FC1B9E2AAB4DE0007AE0DA /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		57FC1BA22AAB65B9007AE0DA /* imageRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageRouge.png; sourceTree = "<group>"; };
 		57FC1BA42AAB66E7007AE0DA /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		574927192ABC40470019780B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57FC1B7F2AAB42A5007AE0DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				573D36B22AB08C8800D24BE0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5749271D2ABC40470019780B /* ColorSelectorTests */ = {
+			isa = PBXGroup;
+			children = (
+				5749271E2ABC40470019780B /* ColorSelectorTests.swift */,
+			);
+			path = ColorSelectorTests;
+			sourceTree = "<group>";
+		};
 		57E9EBA02AB1A88E00326E1E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				57E9EB9E2AB1A84700326E1E /* ZoomBubbleView.swift */,
+				5742571E2AB83D0C001CC405 /* SavedColorTableViewCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -63,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				57FC1B842AAB42A5007AE0DA /* ColorSelector */,
+				5749271D2ABC40470019780B /* ColorSelectorTests */,
 				57FC1B832AAB42A5007AE0DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				57FC1B822AAB42A5007AE0DA /* ColorSelector.app */,
+				5749271C2ABC40470019780B /* ColorSelectorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,6 +124,7 @@
 			children = (
 				57FC1B892AAB42A5007AE0DA /* MainViewController.swift */,
 				57E9EBA12AB1A8CC00326E1E /* LivePickerViewController.swift */,
+				57E9EBA32AB306BE00326E1E /* BookmarksColorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,6 +142,7 @@
 		57FC1B9B2AAB43B0007AE0DA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				574927162ABC3E500019780B /* colorType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,8 +150,6 @@
 		57FC1B9C2AAB43C8007AE0DA /* OtherFiles */ = {
 			isa = PBXGroup;
 			children = (
-				573D36B32AB08D0700D24BE0 /* uploadPictureLottie.json */,
-				57FC1BA22AAB65B9007AE0DA /* imageRouge.png */,
 				57FC1B872AAB42A5007AE0DA /* SceneDelegate.swift */,
 				57FC1B852AAB42A5007AE0DA /* AppDelegate.swift */,
 				57FC1B8E2AAB42AA007AE0DA /* Assets.xcassets */,
@@ -138,6 +169,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5749271B2ABC40470019780B /* ColorSelectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 574927222ABC40480019780B /* Build configuration list for PBXNativeTarget "ColorSelectorTests" */;
+			buildPhases = (
+				574927182ABC40470019780B /* Sources */,
+				574927192ABC40470019780B /* Frameworks */,
+				5749271A2ABC40470019780B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				574927212ABC40470019780B /* PBXTargetDependency */,
+			);
+			name = ColorSelectorTests;
+			productName = ColorSelectorTests;
+			productReference = 5749271C2ABC40470019780B /* ColorSelectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		57FC1B812AAB42A5007AE0DA /* ColorSelector */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57FC1B962AAB42AA007AE0DA /* Build configuration list for PBXNativeTarget "ColorSelector" */;
@@ -152,7 +201,6 @@
 			);
 			name = ColorSelector;
 			packageProductDependencies = (
-				573D36B12AB08C8800D24BE0 /* Lottie */,
 			);
 			productName = ColorSelector;
 			productReference = 57FC1B822AAB42A5007AE0DA /* ColorSelector.app */;
@@ -168,6 +216,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					5749271B2ABC40470019780B = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 57FC1B812AAB42A5007AE0DA;
+					};
 					57FC1B812AAB42A5007AE0DA = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -183,26 +235,31 @@
 			);
 			mainGroup = 57FC1B792AAB42A5007AE0DA;
 			packageReferences = (
-				573D36B02AB08C8800D24BE0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 57FC1B832AAB42A5007AE0DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				57FC1B812AAB42A5007AE0DA /* ColorSelector */,
+				5749271B2ABC40470019780B /* ColorSelectorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5749271A2ABC40470019780B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57FC1B802AAB42A5007AE0DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57FC1BA32AAB65B9007AE0DA /* imageRouge.png in Resources */,
 				57FC1B922AAB42AA007AE0DA /* LaunchScreen.storyboard in Resources */,
 				57FC1B8F2AAB42AA007AE0DA /* Assets.xcassets in Resources */,
-				573D36B42AB08D0700D24BE0 /* uploadPictureLottie.json in Resources */,
 				57FC1B8D2AAB42A5007AE0DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +267,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		574927182ABC40470019780B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5749271F2ABC40470019780B /* ColorSelectorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57FC1B7E2AAB42A5007AE0DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,13 +283,24 @@
 				57E9EBA22AB1A8CC00326E1E /* LivePickerViewController.swift in Sources */,
 				57E9EB9F2AB1A84700326E1E /* ZoomBubbleView.swift in Sources */,
 				57FC1B862AAB42A5007AE0DA /* AppDelegate.swift in Sources */,
+				57E9EBA42AB306BF00326E1E /* BookmarksColorViewController.swift in Sources */,
 				57FC1BA52AAB66E7007AE0DA /* UIColorExtension.swift in Sources */,
 				57FC1B882AAB42A5007AE0DA /* SceneDelegate.swift in Sources */,
+				5742571F2AB83D0C001CC405 /* SavedColorTableViewCell.swift in Sources */,
 				57FC1B9F2AAB4DE0007AE0DA /* UIImageExtension.swift in Sources */,
+				574927172ABC3E500019780B /* colorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		574927212ABC40470019780B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57FC1B812AAB42A5007AE0DA /* ColorSelector */;
+			targetProxy = 574927202ABC40470019780B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		57FC1B8B2AAB42A5007AE0DA /* Main.storyboard */ = {
@@ -246,6 +322,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		574927232ABC40480019780B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KJCJHF4C4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wassim.Zerouta.ColorSelectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ColorSelector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ColorSelector";
+			};
+			name = Debug;
+		};
+		574927242ABC40480019780B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KJCJHF4C4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wassim.Zerouta.ColorSelectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ColorSelector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ColorSelector";
+			};
+			name = Release;
+		};
 		57FC1B942AAB42AA007AE0DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,6 +482,7 @@
 				DEVELOPMENT_TEAM = 6KJCJHF4C4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ColorSelector/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -398,6 +511,7 @@
 				DEVELOPMENT_TEAM = 6KJCJHF4C4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ColorSelector/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -419,6 +533,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		574927222ABC40480019780B /* Build configuration list for PBXNativeTarget "ColorSelectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				574927232ABC40480019780B /* Debug */,
+				574927242ABC40480019780B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		57FC1B7D2AAB42A5007AE0DA /* Build configuration list for PBXProject "ColorSelector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -438,25 +561,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		573D36B02AB08C8800D24BE0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		573D36B12AB08C8800D24BE0 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 573D36B02AB08C8800D24BE0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57FC1B7A2AAB42A5007AE0DA /* Project object */;
 }
