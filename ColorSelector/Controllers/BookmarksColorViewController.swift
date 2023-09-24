@@ -25,6 +25,15 @@ class BookmarksColorViewController: UIViewController {
         return tableView
     }()
     
+    let label: UILabel = {
+        let label = UILabel()
+        label.text = "Vous n'avez pas encore ajouté de couleur !"
+        label.textColor = UIColor(named: "IconColor")
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     var savedColors = [String]()
     var color: colorType = .HEX
     
@@ -35,11 +44,32 @@ class BookmarksColorViewController: UIViewController {
         tableView.dataSource = self
         view.addSubview(segmentedControl)
         view.addSubview(tableView)
+        view.addSubview(label)
+
         createConstrainte()
         segmentedControl.selectedSegmentIndex = 0
     }
     
-    func createConstrainte()	{
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let defaults = UserDefaults.standard
+        if let userData = defaults.array(forKey: "SavedColorsArray") as? [String] {
+            savedColors = userData
+            tableView.reloadData()
+        }
+        
+        if savedColors.isEmpty {
+            label.isHidden = false
+            tableView.isHidden = true
+            segmentedControl.isHidden = true
+        } else {
+            label.isHidden = true
+            tableView.isHidden = false
+            segmentedControl.isHidden = false
+        }
+    }
+    
+    func createConstrainte()    {
         segmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         segmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         segmentedControl.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -49,18 +79,11 @@ class BookmarksColorViewController: UIViewController {
         tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
 
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        let defaults = UserDefaults.standard
-        if let userData = defaults.array(forKey: "SavedColorsArray") as? [String] {
-            savedColors = userData
-            tableView.reloadData()
-            print(savedColors)
-        }
     }
     
 
@@ -86,7 +109,7 @@ extension BookmarksColorViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedColorTableViewCell", for: indexPath) as! SavedColorTableViewCell
-        
+        cell.isUserInteractionEnabled = false
         let color = UIColor(hex: savedColors[indexPath.row])
         let hexLabel = self.color == .HEX ? savedColors[indexPath.row] : color?.stringRepresentation
         cell.configure(hexLabelText: hexLabel!, color: color ?? .white)

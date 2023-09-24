@@ -165,7 +165,7 @@ class LivePickerViewController: UIViewController {
                     captureSession.startRunning()
                 }
                 
-                screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 24.0, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
+                screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
             }
         } catch {
             print(error)
@@ -192,7 +192,7 @@ class LivePickerViewController: UIViewController {
             self.captureSession!.startRunning()
         }
         
-        screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 24.0, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
+        screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
     }
     
     @objc func captureImage() {

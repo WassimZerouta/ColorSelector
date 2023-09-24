@@ -70,19 +70,20 @@ class ZoomBubbleView: UIView {
     }
     
     
-    func colorPicker(image: UIImage, label: UILabel, colorDisplayer: UIView, hexColor: String?) {
+    func colorPicker(image: UIImage, label: UILabel, colorDisplayer: UIView, hexColor: String?, saveButton: UIImageView) -> String {
         imageView.image = image
         let centerInSuperview = convert(crossView.center, to: imageView)
         
         let color = image.getPixelColorAtPoint(point: centerInSuperview, sourceView: imageView)
-        let luminance = color.luminance
-        
-        
-        label.textColor = luminance < 0.5 ? .white : .black
-        
         let hexColor = image.getHexaValue(point: centerInSuperview, sourceView: imageView)
-        label.text = hexColor
+
+        let luminance = color.luminance
+        label.textColor = luminance < 0.5 ? .white : .black
+        saveButton.tintColor = luminance < 0.5 ? .white : .black
+        
         colorDisplayer.backgroundColor = color
+        
+        return hexColor
     }
     
     func updateImage(image: UIImage?) {

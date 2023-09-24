@@ -214,6 +214,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func saveButtonTapped() {
+        print(hexColor)
         guard hexColor != nil else { return }
         
         UIView.animate(withDuration: 0.1, animations: {
@@ -262,7 +263,7 @@ class MainViewController: UIViewController {
                 
                 let zoomedImage = UIImage(cgImage: croppedCGImage)
                 zoomBubbleView = ZoomBubbleView(frame: zoomedRect, image: zoomedImage)
-                zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor)
+                hexColor = zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor, saveButton: saveButton)
                 view.addSubview(zoomBubbleView!)
             }
         case .changed:
@@ -275,7 +276,7 @@ class MainViewController: UIViewController {
                 
                 let zoomedImage = UIImage(cgImage: croppedCGImage)
                 zoomBubbleView?.updateImage(image: zoomedImage)
-                zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor)            }
+                hexColor = zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor, saveButton: saveButton)}
         case .ended:
             zoomBubbleView?.removeFromSuperview()
             zoomBubbleView = nil
