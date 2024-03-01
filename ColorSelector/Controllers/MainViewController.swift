@@ -11,196 +11,184 @@ class MainViewController: UIViewController {
     
     var hexColor: String?
     
-    let showGalleryButton: UIButton = {
+    private let showGalleryButton: UIButton = {
         let button = UIButton()
         button.setTitle("APPUYEZ POUR AJOUTER UNE IMAGE", for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
         button.titleLabel!.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let content = UIView()
+    private let content: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "TabBarColor")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    let addButton: UIImageView = {
+    private let addButton: UIImageView = {
         let button = UIImageView()
         button.contentMode = .scaleAspectFit
         let image = UIImage(systemName: "plus.viewfinder")?.withRenderingMode(.alwaysTemplate)
         button.tintColor = .darkGray
         button.image = image
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let backButton: UIImageView = {
+    private let backButton: UIImageView = {
         let button = UIImageView()
         button.contentMode = .scaleAspectFit
         let image = UIImage(systemName: "chevron.left")?.withRenderingMode(.alwaysTemplate)
         button.tintColor = UIColor(named: "IconColor")
         button.image = image
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    let changeButton: UIImageView = {
+    
+    private let changeButton: UIImageView = {
         let button = UIImageView()
         button.contentMode = .scaleAspectFit
         let image = UIImage(systemName: "tray.and.arrow.down")?.withRenderingMode(.alwaysTemplate)
         button.tintColor = UIColor(named: "IconColor")
         button.image = image
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let picture = UIImageView()
+    private let picture: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.text = "TOUCHEZ L'ÉCRAN"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.tintColor = UIColor(named: "IconColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let colorDisplayer = UIView()
+    private let colorDisplayer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     
-    let saveButton: UIImageView = {
+    private let saveButton: UIImageView = {
         let button = UIImageView()
         button.contentMode = .scaleAspectFit
         let image = UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate)
         button.tintColor = UIColor(named: "IconColor")
         button.image = image
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     
     
-    var zoomBubbleView: ZoomBubbleView?
+    private var zoomBubbleView: ZoomBubbleView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        addButtonView()
-        showGalleryButtonView()
-        contentView()
-        backButtonView()
-        changeButtonView()
-        colorDisplayerView()
-        pictureView()
-        rgbLabelView()
-        saveButtonView()
-    }
-    
-    private func addButtonView() {
-        view.addSubview(addButton)
-        
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        addButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        addButton.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-
-        
-        addButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
-        addButton.addGestureRecognizer(tapGesture)
-    }
-    
-    private func showGalleryButtonView() {
-
-        showGalleryButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(showGalleryButton)
-        showGalleryButton.topAnchor.constraint(equalTo: addButton.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
-        showGalleryButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        showGalleryButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    private func contentView() {
-        self.view.addSubview(content)
-        content.backgroundColor = UIColor(named: "TabBarColor")
-        content.translatesAutoresizingMaskIntoConstraints = false
-        content.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        content.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        content.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        content.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        createConstraints()
+        buttonGestures()
         content.isHidden = true
-        
     }
     
-    private func backButtonView() {
+    private func createConstraints() {
+        view.addSubview(addButton)
+        view.addSubview(showGalleryButton)
+        view.addSubview(content)
         content.addSubview(backButton)
-        
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: content.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        backButton.leftAnchor.constraint(equalTo: content.leftAnchor, constant: 20).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-
-        
-        backButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backButtonTapped))
-        backButton.addGestureRecognizer(tapGesture)
-    }
-    
-    
-    private func changeButtonView() {
         content.addSubview(changeButton)
-        changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.topAnchor.constraint(equalTo: content.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        changeButton.rightAnchor.constraint(equalTo: content.rightAnchor, constant: -20).isActive = true
-        changeButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        changeButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-
-        
-        changeButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
-        changeButton.addGestureRecognizer(tapGesture)
-    }
-    
-    private func pictureView() {
-        content.addSubview(picture)
-        picture.contentMode = .scaleAspectFit
-        picture.translatesAutoresizingMaskIntoConstraints = false
-        picture.topAnchor.constraint(equalTo: content.safeAreaLayoutGuide.topAnchor, constant: 80).isActive = true
-        picture.rightAnchor.constraint(equalTo: content.rightAnchor).isActive = true
-        picture.leftAnchor.constraint(equalTo: content.leftAnchor).isActive = true
-        picture.bottomAnchor.constraint(equalTo: colorDisplayer.topAnchor).isActive = true
-        picture.clipsToBounds = true
-        picture.isUserInteractionEnabled = true
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(colorPicker(_:)))
-        picture.addGestureRecognizer(longPressGesture)
-        picture.addGestureRecognizer(tapGesture)
-    }
-    
-    private func rgbLabelView() {
-        content.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerYAnchor).isActive = true
-    }
-    
-    private func colorDisplayerView() {
         content.addSubview(colorDisplayer)
-        colorDisplayer.translatesAutoresizingMaskIntoConstraints = false
-        colorDisplayer.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        colorDisplayer.rightAnchor.constraint(equalTo: content.rightAnchor).isActive = true
-        colorDisplayer.leftAnchor.constraint(equalTo: content.leftAnchor).isActive = true
-        colorDisplayer.bottomAnchor.constraint(equalTo: content.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-    
-    private func saveButtonView() {
+        content.addSubview(picture)
+        content.addSubview(label)
         content.addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        saveButton.rightAnchor.constraint(equalTo: colorDisplayer.rightAnchor, constant: -20).isActive = true
-        saveButton.centerYAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerYAnchor).isActive = true
 
-        saveButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
-        saveButton.addGestureRecognizer(tapGesture)
+        NSLayoutConstraint.activate([
+            addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            addButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            addButton.heightAnchor.constraint(equalToConstant: 300),
+            addButton.widthAnchor.constraint(equalToConstant: 300),
+            
+            showGalleryButton.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 20),
+            showGalleryButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            showGalleryButton.heightAnchor.constraint(equalToConstant: 50),
+
+            content.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            content.rightAnchor.constraint(equalTo: view.rightAnchor),
+            content.leftAnchor.constraint(equalTo: view.leftAnchor),
+            content.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            backButton.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
+            backButton.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 20),
+            backButton.heightAnchor.constraint(equalToConstant: 25),
+            backButton.widthAnchor.constraint(equalToConstant: 25),
+            
+            changeButton.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
+            changeButton.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -20),
+            changeButton.heightAnchor.constraint(equalToConstant: 25),
+            changeButton.widthAnchor.constraint(equalToConstant: 25),
+            
+            colorDisplayer.heightAnchor.constraint(equalToConstant: 100),
+            colorDisplayer.rightAnchor.constraint(equalTo: content.rightAnchor),
+            colorDisplayer.leftAnchor.constraint(equalTo: content.leftAnchor),
+            colorDisplayer.bottomAnchor.constraint(equalTo: content.safeAreaLayoutGuide.bottomAnchor),
+            
+            picture.topAnchor.constraint(equalTo: content.safeAreaLayoutGuide.topAnchor, constant: 80),
+            picture.rightAnchor.constraint(equalTo: content.rightAnchor),
+            picture.leftAnchor.constraint(equalTo: content.leftAnchor),
+            picture.bottomAnchor.constraint(equalTo: colorDisplayer.topAnchor),
+            
+            label.centerXAnchor.constraint(equalTo: colorDisplayer.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: colorDisplayer.centerYAnchor),
+            
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: 50),
+            saveButton.rightAnchor.constraint(equalTo: colorDisplayer.rightAnchor, constant: -20),
+            saveButton.centerYAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerYAnchor)
+        ])
     }
     
-    @objc func backButtonTapped() {
+    private func buttonGestures() {
+        //ADD SHOWGALLERY GESTURE
+        let tapShowGalleryButtonGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
+        showGalleryButton.addGestureRecognizer(tapShowGalleryButtonGesture)
+
+        //ADD BUTTON GESTURE
+        let tapAddButtonGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
+        addButton.addGestureRecognizer(tapAddButtonGesture)
+        //BACK BUTTON GESTURE
+        let tapBackButtonGesture = UITapGestureRecognizer(target: self, action: #selector(backButtonTapped))
+        backButton.addGestureRecognizer(tapBackButtonGesture)
+        //CHANGE BUTTON GESTURE
+        let tapChangeButtonGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
+        changeButton.addGestureRecognizer(tapChangeButtonGesture)
+        //PICTURE VIEW GESTURE
+        let longPressPictureGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        let tapPictureGesture = UITapGestureRecognizer(target: self, action: #selector(colorPicker(_:)))
+        picture.addGestureRecognizer(longPressPictureGesture)
+        picture.addGestureRecognizer(tapPictureGesture)
+        //SAVE BUTTON GESTURE
+        let tapSaveButtonGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
+        saveButton.addGestureRecognizer(tapSaveButtonGesture)
+    }
+    
+    @objc private func backButtonTapped() {
         content.isHidden = true
         picture.image = nil
         label.text = "TOUCHEZ L'ÉCRAN"
@@ -213,8 +201,7 @@ class MainViewController: UIViewController {
         present(picker, animated: true)
     }
     
-    @objc func saveButtonTapped() {
-        print(hexColor)
+    @objc private func saveButtonTapped() {
         guard hexColor != nil else { return }
         
         UIView.animate(withDuration: 0.1, animations: {
@@ -249,7 +236,7 @@ class MainViewController: UIViewController {
     }
     
     
-    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
         let touchPoint = gesture.location(in: picture)
         let zoomSize = CGSize(width: 150, height: 150)
 
@@ -264,6 +251,7 @@ class MainViewController: UIViewController {
                 let zoomedImage = UIImage(cgImage: croppedCGImage)
                 zoomBubbleView = ZoomBubbleView(frame: zoomedRect, image: zoomedImage)
                 hexColor = zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor, saveButton: saveButton)
+                label.text = hexColor
                 view.addSubview(zoomBubbleView!)
             }
         case .changed:
@@ -277,6 +265,8 @@ class MainViewController: UIViewController {
                 let zoomedImage = UIImage(cgImage: croppedCGImage)
                 zoomBubbleView?.updateImage(image: zoomedImage)
                 hexColor = zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor, saveButton: saveButton)}
+                label.text = hexColor
+
         case .ended:
             zoomBubbleView?.removeFromSuperview()
             zoomBubbleView = nil

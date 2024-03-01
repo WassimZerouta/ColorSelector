@@ -13,6 +13,7 @@ class LivePickerViewController: UIViewController {
     var captureSession: AVCaptureSession?
     var photoOutput: AVCapturePhotoOutput?
     var screenshotTimer: Timer?
+    
     let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
