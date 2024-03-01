@@ -12,7 +12,6 @@ class BookmarksColorViewController: UIViewController {
     let segmentedControl: UISegmentedControl = {
         let items = ["HEX", "RGB"]
         let segmentedControl = UISegmentedControl(items: items)
-        segmentedControl.addTarget(self, action: #selector(convertValue(_:)), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         return segmentedControl
     }()
@@ -21,7 +20,6 @@ class BookmarksColorViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(SavedColorTableViewCell.self, forCellReuseIdentifier: "SavedColorTableViewCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
-
         return tableView
     }()
     
@@ -37,16 +35,14 @@ class BookmarksColorViewController: UIViewController {
     var savedColors = [String]()
     var color: colorType = .HEX
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        view.addSubview(segmentedControl)
-        view.addSubview(tableView)
-        view.addSubview(label)
-
-        createConstrainte()
+        
+        setupConstraintes()
+        segmentedControl.addTarget(self, action: #selector(convertValue(_:)), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = 0
     }
     
@@ -69,24 +65,30 @@ class BookmarksColorViewController: UIViewController {
         }
     }
     
-    func createConstrainte()    {
-        segmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        segmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        segmentedControl.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        segmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    private func setupConstraintes() {
         
-        tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        view.addSubview(segmentedControl)
+        view.addSubview(tableView)
+        view.addSubview(label)
         
-        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-
+        NSLayoutConstraint.activate([
+            segmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            segmentedControl.widthAnchor.constraint(equalToConstant: 200),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 50),
+            
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
         
     }
     
-
+    
     @objc func convertValue(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:

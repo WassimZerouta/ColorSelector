@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     
     private let saveButton: UIImageView = {
         let button = UIImageView()
@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
     
     
     private var zoomBubbleView: ZoomBubbleView?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -118,7 +118,7 @@ class MainViewController: UIViewController {
         content.addSubview(picture)
         content.addSubview(label)
         content.addSubview(saveButton)
-
+        
         NSLayoutConstraint.activate([
             addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             addButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
@@ -128,7 +128,7 @@ class MainViewController: UIViewController {
             showGalleryButton.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 20),
             showGalleryButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             showGalleryButton.heightAnchor.constraint(equalToConstant: 50),
-
+            
             content.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             content.rightAnchor.constraint(equalTo: view.rightAnchor),
             content.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -168,7 +168,7 @@ class MainViewController: UIViewController {
         //ADD SHOWGALLERY GESTURE
         let tapShowGalleryButtonGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         showGalleryButton.addGestureRecognizer(tapShowGalleryButtonGesture)
-
+        
         //ADD BUTTON GESTURE
         let tapAddButtonGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         addButton.addGestureRecognizer(tapAddButtonGesture)
@@ -212,7 +212,7 @@ class MainViewController: UIViewController {
                 self.saveButton.transform = CGAffineTransform.identity
             })
         }
-
+        
         var savedColorsArray = UserDefaults.standard.array(forKey: "SavedColorsArray") as? [String] ?? []
         savedColorsArray.append(hexColor!)
         UserDefaults.standard.set(savedColorsArray, forKey: "SavedColorsArray")
@@ -239,7 +239,7 @@ class MainViewController: UIViewController {
     @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
         let touchPoint = gesture.location(in: picture)
         let zoomSize = CGSize(width: 150, height: 150)
-
+        
         switch gesture.state {
         case .began:
             let zoomedRect = CGRect(x: touchPoint.x - zoomSize.width / 2, y: touchPoint.y - zoomSize.height / 2, width: zoomSize.width, height: zoomSize.height)
@@ -265,8 +265,8 @@ class MainViewController: UIViewController {
                 let zoomedImage = UIImage(cgImage: croppedCGImage)
                 zoomBubbleView?.updateImage(image: zoomedImage)
                 hexColor = zoomBubbleView?.colorPicker(image: zoomedImage, label: label, colorDisplayer: colorDisplayer, hexColor: hexColor, saveButton: saveButton)}
-                label.text = hexColor
-
+            label.text = hexColor
+            
         case .ended:
             zoomBubbleView?.removeFromSuperview()
             zoomBubbleView = nil
@@ -274,26 +274,26 @@ class MainViewController: UIViewController {
             break
         }
     }
-
-
-
+    
+    
+    
 }
 
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
-
+        
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
             let compressedImage = UIImage(data: jpegData)
             picture.image = compressedImage
         }
         content.isHidden = (picture.image == nil) ? true : false
-
+        
         dismiss(animated: true)
     }
     
-
+    
     
 }
 

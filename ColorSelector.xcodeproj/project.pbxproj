@@ -21,6 +21,7 @@
 		57FC1B922AAB42AA007AE0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FC1B902AAB42AA007AE0DA /* LaunchScreen.storyboard */; };
 		57FC1B9F2AAB4DE0007AE0DA /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1B9E2AAB4DE0007AE0DA /* UIImageExtension.swift */; };
 		57FC1BA52AAB66E7007AE0DA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC1BA42AAB66E7007AE0DA /* UIColorExtension.swift */; };
+		CFB6BAC72B9207CE00D382E9 /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB6BAC62B9207CE00D382E9 /* CrossView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		57FC1B932AAB42AA007AE0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57FC1B9E2AAB4DE0007AE0DA /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		57FC1BA42AAB66E7007AE0DA /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CFB6BAC62B9207CE00D382E9 /* CrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +84,8 @@
 		57E9EBA02AB1A88E00326E1E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				CFB6BAC62B9207CE00D382E9 /* CrossView.swift */,
 				57E9EB9E2AB1A84700326E1E /* ZoomBubbleView.swift */,
-				5742571E2AB83D0C001CC405 /* SavedColorTableViewCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -109,6 +111,7 @@
 		57FC1B842AAB42A5007AE0DA /* ColorSelector */ = {
 			isa = PBXGroup;
 			children = (
+				CFB6BAC92B920FEA00D382E9 /* Services */,
 				57FC1B9D2AAB4DB6007AE0DA /* Extensions */,
 				57FC1B9C2AAB43C8007AE0DA /* OtherFiles */,
 				57FC1B9B2AAB43B0007AE0DA /* Models */,
@@ -132,6 +135,7 @@
 		57FC1B9A2AAB43A8007AE0DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CFB6BAC82B920FA900D382E9 /* CustomCells */,
 				57E9EBA02AB1A88E00326E1E /* CustomViews */,
 				57FC1B8B2AAB42A5007AE0DA /* Main.storyboard */,
 				57FC1B902AAB42AA007AE0DA /* LaunchScreen.storyboard */,
@@ -164,6 +168,21 @@
 				57FC1BA42AAB66E7007AE0DA /* UIColorExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CFB6BAC82B920FA900D382E9 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				5742571E2AB83D0C001CC405 /* SavedColorTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		CFB6BAC92B920FEA00D382E9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +305,7 @@
 				57E9EBA42AB306BF00326E1E /* BookmarksColorViewController.swift in Sources */,
 				57FC1BA52AAB66E7007AE0DA /* UIColorExtension.swift in Sources */,
 				57FC1B882AAB42A5007AE0DA /* SceneDelegate.swift in Sources */,
+				CFB6BAC72B9207CE00D382E9 /* CrossView.swift in Sources */,
 				5742571F2AB83D0C001CC405 /* SavedColorTableViewCell.swift in Sources */,
 				57FC1B9F2AAB4DE0007AE0DA /* UIImageExtension.swift in Sources */,
 				574927172ABC3E500019780B /* colorType.swift in Sources */,

@@ -10,6 +10,8 @@ import AVFoundation
 
 class LivePickerViewController: UIViewController {
     
+    var hexColor: String?
+    
     var captureSession: AVCaptureSession?
     var photoOutput: AVCapturePhotoOutput?
     var screenshotTimer: Timer?
@@ -18,12 +20,15 @@ class LivePickerViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var hexColor: String?
-    
-    let colorDisplayer = UIView()
+    let colorDisplayer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let saveButton: UIImageView = {
         let button = UIImageView()
@@ -31,21 +36,30 @@ class LivePickerViewController: UIViewController {
         let image = UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate)
         button.tintColor = UIColor(named: "IconColor")
         button.image = image
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let crossView = UIView()
+    private let crossView: CrossView = {
+        let view = CrossView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    var capturedImageView = UIImageView()
+    var capturedImageView: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupConstraints()
         
-        colorDisplayerView()
-        addCapturedImageView()
-        labelView()
-        addCrossView()
-        saveButtonView()
+        let tapSaveButtonGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
+        saveButton.addGestureRecognizer(tapSaveButtonGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,54 +75,42 @@ class LivePickerViewController: UIViewController {
         captureSession?.stopRunning()
     }
     
-    
-    func addCapturedImageView() {
+    private func setupConstraints() {
         view.addSubview(capturedImageView)
-        
-        
-        capturedImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        capturedImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        capturedImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        capturedImageView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        capturedImageView.bottomAnchor.constraint(equalTo: colorDisplayer.topAnchor).isActive = true
-        
-        capturedImageView.contentMode = .scaleAspectFill
-    }
-    
-    private func colorDisplayerView() {
         view.addSubview(colorDisplayer)
-        colorDisplayer.translatesAutoresizingMaskIntoConstraints = false
-        colorDisplayer.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        colorDisplayer.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        colorDisplayer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        colorDisplayer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-    
-    func labelView() {
-        label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
-        label.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        label.centerYAnchor.constraint(equalTo: colorDisplayer.centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: colorDisplayer.centerXAnchor).isActive = true
-        
-        
-    }
-    
-    private func saveButtonView() {
         view.addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        saveButton.rightAnchor.constraint(equalTo: colorDisplayer.rightAnchor, constant: -20).isActive = true
-        saveButton.centerYAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        view.addSubview(crossView)
         
-        saveButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
-        saveButton.addGestureRecognizer(tapGesture)
+        NSLayoutConstraint.activate([
+            capturedImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            capturedImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            capturedImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            capturedImageView.bottomAnchor.constraint(equalTo: colorDisplayer.topAnchor),
+            
+            colorDisplayer.heightAnchor.constraint(equalToConstant: 100),
+            colorDisplayer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            colorDisplayer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            colorDisplayer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            label.heightAnchor.constraint(equalToConstant: 100),
+            label.centerYAnchor.constraint(equalTo: colorDisplayer.centerYAnchor),
+            label.centerXAnchor.constraint(equalTo: colorDisplayer.centerXAnchor),
+            
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: 50),
+            saveButton.rightAnchor.constraint(equalTo: colorDisplayer.rightAnchor, constant: -20),
+            saveButton.centerYAnchor.constraint(equalTo: colorDisplayer.safeAreaLayoutGuide.centerYAnchor),
+            
+            crossView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            crossView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            crossView.widthAnchor.constraint(equalToConstant: crossView.crossSize),
+            crossView.heightAnchor.constraint(equalToConstant: crossView.crossSize)
+        ])
+        
     }
     
-    @objc func saveButtonTapped() {
+    @objc private func saveButtonTapped() {
         guard hexColor != nil else { return }
         
         UIView.animate(withDuration: 0.1, animations: {
@@ -126,28 +128,9 @@ class LivePickerViewController: UIViewController {
         UserDefaults.standard.synchronize()
     }
     
-    func addCrossView() {
-        let crossSize: CGFloat = 20
-        crossView.frame = CGRect(x: (view.frame.width - crossSize) / 2, y: (view.frame.height - crossSize) / 2, width: crossSize, height: crossSize)
-        crossView.backgroundColor = .clear
-        view.addSubview(crossView)
-        
-        let lineWidth: CGFloat = 2
-        let crossPath = UIBezierPath()
-        crossPath.lineWidth = lineWidth
-        crossPath.move(to: CGPoint(x: crossSize / 2, y: 0))
-        crossPath.addLine(to: CGPoint(x: crossSize / 2, y: crossSize))
-        crossPath.move(to: CGPoint(x: 0, y: crossSize / 2))
-        crossPath.addLine(to: CGPoint(x: crossSize, y: crossSize / 2))
-        
-        let crossLayer = CAShapeLayer()
-        crossLayer.path = crossPath.cgPath
-        crossLayer.strokeColor = UIColor.white.cgColor
-        crossLayer.lineWidth = lineWidth
-        crossView.layer.addSublayer(crossLayer)
-    }
     
-    func setupCaptureSession() {
+    
+    private func setupCaptureSession() {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -173,7 +156,7 @@ class LivePickerViewController: UIViewController {
         }
     }
     
-    func addSession() {
+    private func addSession() {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -193,14 +176,13 @@ class LivePickerViewController: UIViewController {
             self.captureSession!.startRunning()
         }
         
-        screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
+        screenshotTimer = Timer.scheduledTimer(timeInterval: 1.0 / 20, target: self, selector: #selector(captureImage), userInfo: nil, repeats: true)
     }
     
-    @objc func captureImage() {
+    @objc private func captureImage() {
+        
         guard let photoOutput = photoOutput else { return }
-        
         let photoSettings = AVCapturePhotoSettings()
-        
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
     }
 }
